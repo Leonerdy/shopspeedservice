@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" routerLink="/">Loja SpeedService</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
@@ -12,19 +14,22 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">Carrinho de compras</a>
       </li>
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Item</a>
-          <a class="dropdown-item" href="#">Outro item</a>
-          <a class="dropdown-item" href="#">Algumm outro item</a>
+
+      <li ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Usuário</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="/my/orders">Pedidos</a>
+          <a class="dropdown-item" routerLink="/admin/orders">Gerenciar pedidos</a>
+          <a class="dropdown-item" routerLink="/admin/products">Gerenciar Produtos</a>
+          <a class="dropdown-item">log out</a>
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Pesquisa" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+    <form #loginForm="ngForm" class="form-inline my-2  my-lg-0" (ngSubmit)="login()">
+      <input class="form-control mr-sm-2" type="text" name="username" placeholder="Usuário" required [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2" type="password" name="password" placeholder="Senha" required [(ngModel)]="model.password">
+      <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
   </div>
 </nav>
